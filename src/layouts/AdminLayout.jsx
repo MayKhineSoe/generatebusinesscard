@@ -1,7 +1,7 @@
 import { useState } from "react";
 import {supabase} from '../utils/supabaseClient'
 import { useNavigate } from 'react-router-dom'
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useLocation } from "react-router-dom";
 import Logo from '../assets/logo.jpg'
 import { 
   Menu, X, LayoutDashboard, Users, Settings, LogOut, ChevronDown, ChevronUp, UserPlus, List
@@ -11,6 +11,7 @@ const AdminLayout = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false); // Dropdown state
     const navigate = useNavigate();
+    const location = useLocation();
 
   const handleLogout = async () => {
     const { error } = await supabase.auth.signOut();
@@ -79,8 +80,9 @@ const AdminLayout = () => {
         
         {/* Page Content */}
         <div className="p-6">
-          <img src={Logo} />
-          <Outlet /> {/* This will load the child routes (dashboard, profiles, etc.) */}
+        {location.pathname === "/" && <img src={Logo} alt="Logo" />}
+                  <Outlet /> {/* This will load the child routes (dashboard, profiles, etc.) */}
+         
         </div>
       </div>
     </div>
