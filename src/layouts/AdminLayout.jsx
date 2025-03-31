@@ -2,6 +2,7 @@ import { useState } from "react";
 import {supabase} from '../utils/supabaseClient'
 import { useNavigate } from 'react-router-dom'
 import { Link, Outlet } from "react-router-dom";
+import Logo from '../assets/logo.jpg'
 import { 
   Menu, X, LayoutDashboard, Users, Settings, LogOut, ChevronDown, ChevronUp, UserPlus, List
 } from "lucide-react";
@@ -78,6 +79,7 @@ const AdminLayout = () => {
         
         {/* Page Content */}
         <div className="p-6">
+          <img src={Logo} />
           <Outlet /> {/* This will load the child routes (dashboard, profiles, etc.) */}
         </div>
       </div>
